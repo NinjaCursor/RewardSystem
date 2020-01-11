@@ -1,0 +1,87 @@
+#Simple Rewards Plugin
+# Easy rewards for survival servers
+
+#messages
+messages:
+  points-given-event: "+{points_awarded} points"
+  level-advancement-event: "You advanced to level {current_level}!"
+  total-points: "Total Points: {total_points}"
+
+# MySQL
+mysql:
+  enabled: false
+  host: "host.com"
+  username: "username"
+  password: "password"
+  port: 3306
+  database: "database"
+
+# Reward Notification
+notifications:
+  on-login:
+    message:
+      private:
+        - "Server has rewards so play on the server for all your life"
+      public:
+        - ""
+    delay: 2
+  on-points-given:
+    message:
+      private:
+        - "You just received X points"
+      public:
+        - ""
+    delay: 0
+  on-level-advance:
+    message:
+      private:
+        - "You advanced to level {current_level}!"
+      public:
+        - "{player} just advanced to level {current_level}!"
+    delay: 0
+
+# Daily Reward
+daily-reward:
+  enabled: true
+  reward:
+    message:
+      - "{points-given-event-message} daily reward!"
+    points: 10
+    growth-exponent: 2
+    growth-multiplier: 4
+
+# Invite Reward
+invite-reward:
+  enabled: true
+  reward:
+    message:
+      - "{points-given-event-message} for having the {last-invited-person} fulfill the invite requirements"
+      - "Gain {next-points-awarded} points from the next person you invite"
+      - "The rewards don't stop! For every uninterrupted 30 minutes {last-invited-person} plays, you will gain a reward"
+    points: 100
+    growth-exponent: 2
+    growth-multiplier: 4
+
+# Passive Invite Reward
+passive-invite-reward:
+  enabled: true
+  duration: 30
+  reward:
+    message:
+      - "{points-given-event-message} for {invited-player-name} playing {invite-passive-minutes} minutes"
+      - "Gain {next-points-awarded} points when {invited-player-name} plays {invite-passive-minutes} more minutes"
+    points: 5
+    growth-exponent: 0
+    growth-multiplier: 1
+
+# Time Reward
+time-reward:
+  enabled: true
+  duration: 1
+  reward:
+    message:
+      - "{points-given-event-message} for playing on the server"
+      - "Gain {next-points-awarded} points after the next {next_duration} minutes"
+    points: 100
+    growth-exponent: 1
+    growth-multiplier: 2
